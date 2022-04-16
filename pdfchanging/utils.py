@@ -23,7 +23,7 @@ def convert_pdf_to_txt(path):
     device = TextConverter(rsrcmgr, retstr, codec=codec, laparams=laparams)
     fp = open(path, 'rb')
     interpreter = PDFPageInterpreter(rsrcmgr, device)
-    maxpages = 0   #最大ページ数の指定
+    maxpages = 10   #最大ページ数の指定
     fstr = ''
     for page in PDFPage.get_pages(fp, maxpages=maxpages):   #1ページ分の情報を取得する
         interpreter.process_page(page)   # process_page()で1ページ分の情報をテキストに変換

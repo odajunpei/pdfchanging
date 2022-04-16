@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage
 import os, random, string
-from upload_validator import FileTypeValidator
+# from upload_validator import FileTypeValidator
 
 
 class UploadForm(forms.Form):
@@ -11,7 +11,7 @@ class UploadForm(forms.Form):
     """
     document = forms.FileField(label="PDFアップロード",
         widget=forms.ClearableFileInput(attrs={'multiple': True}),
-        validators=[FileTypeValidator(allowed_types=['application/pdf'])]
+        # validators=[FileTypeValidator(allowed_types=['application/pdf'])]
         )
 
 
