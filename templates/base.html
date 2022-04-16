@@ -66,16 +66,17 @@
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
-
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
+            {% if user.is_authenticated %}
             <li>
-              <a class="nav-link">ユーザ名：</a>
+              <a class="nav-link">ユーザ名：{{ user.get_username }}</a>
             </li>
             <li>
-              <a class="nav-link" href="">
+              <a class="nav-link" href="{% url 'accounts:logout' %}">
                 <i class="fa fa-fw fa-sign-out"></i>ログアウト</a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </nav>
@@ -94,8 +95,9 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li class="active"><a href=""><i class="fa fa-circle-o"></i> PDFアップロード</a></li>
-              <li><a href=""><i class="fa fa-circle-o"></i> Excel管理画面</a></li>
+              <li class="active"><a href="{% url 'pdfchanging:upload' %}"><i class="fa fa-circle-o"></i> PDFアップロード</a>
+              </li>
+              <li><a href="{% url 'pdfchanging:list' %}"><i class="fa fa-circle-o"></i> Excel管理画面</a></li>
             </ul>
           </li>
         </ul>
@@ -362,5 +364,32 @@
   <script src="{% static 'AdminLTE-2.4.12/dist/js/demo.js' %}"></script>
 
 </body>
+
+<!-- ここから新規追加 -->
+<script language="JavaScript" type="text/javascript">
+  // 「全て選択」チェックで全てにチェック付く
+  function AllChecked() {
+    var all = document.form.all.checked;
+    for (var i = 0; i < document.form.checks.length; i++) {
+      document.form.checks[i].checked = all;
+    }
+  }
+  // 一つでもチェックを外すと「全て選択」のチェック外れる
+  function DisChecked() {
+    var checks = document.form.checks;
+    var checksCount = 0;
+    for (var i = 0; i < checks.length; i++) {
+      if (checks[i].checked == false) {
+        document.form.all.checked = false;
+      } else {
+        checksCount += 1;
+        if (checksCount == checks.length) {
+          document.form.all.checked = true;
+        }
+      }
+    }
+  }
+</script>
+<!-- ここまで新規追加 -->
 
 </html>
