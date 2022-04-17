@@ -1,0 +1,24 @@
+楽々変換君使用方法
+
+#  仮想環境を作成
+python -m venv myenv
+
+# 移動
+.\myenv\Scripts\activate　移動
+
+# インストール
+pip install django
+pip install django-bootstrap4
+pip install django-upload-validator
+pip install pdfminer.six
+pip install django-widgets-improved
+pip install openpyxl
+
+# 移動
+cd tutorial
+
+#起動
+python manage.py runserver
+
+# URLにアクセス
+http://127.0.0.1:8000/pdfchanging/top/git 
